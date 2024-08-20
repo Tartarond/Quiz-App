@@ -1,0 +1,19 @@
+*{
+    margin: auto;
+    padding: auto;
+}
+
+body{
+    background: #fff
+}
+
+.app{
+    background: #fff;
+    color: #000
+}
+
+.button{
+    color: #000;
+    background: #888;
+    border: none
+}
