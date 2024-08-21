@@ -19,6 +19,13 @@ body{
 }
 
 .selected{
-    border:#f00;
     background:#ddd
+}
+
+.correct{
+    background: #0f0
+}
+
+.wrong{
+    background: #f00
 }
