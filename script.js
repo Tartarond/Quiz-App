@@ -10,11 +10,15 @@ const questionResult = document.getElementById("question_result")
 const finishButton = document.getElementById("finish")
 const questionElement = document.getElementById("current_question")
 
+// path of the json file with the data
 const source = "data.json"
 
+// The number of the current question
 let questionCounter = 0;
+// The number of correctly answered questions
 let correctAnswers = 0;
 
+// set counters to 0, sets Event listeners, shows the first question, loads the quiz content from the json
 function startQuiz() {
     questionCounter = 0;
     correctAnswers = 0;
@@ -31,6 +35,7 @@ function startQuiz() {
     });
 }
 
+// fetch the quiz contet from the given json
 async function loadData() {
     try {
         const response = await fetch(source);
@@ -56,6 +61,7 @@ async function loadData() {
     }
 }
 
+// load the next question
 function nextButtonClicked() {
     if(questionCounter < questions.length-1) {
         questionCounter++
@@ -63,6 +69,7 @@ function nextButtonClicked() {
     showQuestion()
 }
 
+// load the previous question
 function previousButtonClicked() {
     if(questionCounter > 0) {
         questionCounter--
@@ -70,16 +77,22 @@ function previousButtonClicked() {
     showQuestion()
 }
 
+// load the content of the current question
 function showQuestion() {
+    // remove the previous answer buttons
     while(answerButtons.firstChild) {
         answerButtons.removeChild(answerButtons.firstChild)
     }
-    let currentQuestion = questions[questionCounter]
-    questionTitle.innerHTML = "Frage " + (questionCounter+1) + " von " + questions.length + ": " + currentQuestion.question
 
+    let currentQuestion = questions[questionCounter]
+    
+    // set the question title Element
+    questionTitle.innerHTML = "Frage " + (questionCounter+1) + " von " + questions.length + ": " + currentQuestion.question
+    // disable the previous button for first- and next button for last question
     previousButton.disabled = questionCounter === 0
     nextButton.disabled = questionCounter === questions.length-1
 
+    //create answer buttons
     currentQuestion.answers.forEach(answer => {
         const button = document.createElement("button")
         button.innerHTML = answer.answer
@@ -96,7 +109,10 @@ function showQuestion() {
             button.addEventListener("click", selectAnswer)
         }
     })
+
+    // Show the earned points
     score.innerHTML = "Ergebnis: " + correctAnswers
+    // Show the result of the current question if already answered
     if(currentQuestion.confirmed) {
         questionResult.innerHTML = currentQuestion.correctAnswer ? "Korrekt!" : "Leider Falsch!"
         confirmButton.disabled = true
@@ -104,8 +120,16 @@ function showQuestion() {
         questionResult.innerHTML = ""
         confirmButton.disabled = false
     }
+
+    finishButton.disabled = false
+    questions.forEach(question => {
+        if (!question.confirmed) {
+            finishButton.disabled = true
+        }
+    })
 }
 
+// confirm the selected answers for the current question and check if the answer is correct
 function confirmButtonClicked() {
     let currentQuestion = questions[questionCounter]
     let correctAnswer = true
@@ -126,6 +150,7 @@ function confirmButtonClicked() {
     showQuestion()
 }
 
+// set the corresponding answer to selected
 function selectAnswer(e) {
     const selectedButton = e.target
     selectedButton.classList.add("selected")
@@ -134,6 +159,7 @@ function selectAnswer(e) {
     selectedButton.removeEventListener("click", selectAnswer)
 }
 
+// set the corresponding answer to unselected
 function unselectAnswer(e) {
     const selectedButton = e.target
     if (selectedButton.classList.contains("selected")){
@@ -144,6 +170,7 @@ function unselectAnswer(e) {
     selectedButton.removeEventListener("click", unselectAnswer)
 }
 
+// finish the quiz, go to the end screen and show results
 function finishButtonClicked() {
     while(questionElement.firstChild) {
         questionElement.removeChild(questionElement.firstChild)

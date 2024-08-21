@@ -42,6 +42,19 @@ button{
     margin: 10px
 }
 
+.correct{
+    background: #0e0
+}
+.correct:hover{
+    background: #0e0
+}
+
+.wrong{
+    background: #e00
+}.wrong:hover{
+    background: #e00
+}
+
 button:hover{
     background: #CCE3DE
 }
@@ -53,15 +66,4 @@ button:disabled{
 
 .selected{
     background:#6B9080;
-}
-.selected:hover{
-    background:#6B9080;
-}
-
-.correct{
-    background: #0e0
-}
-
-.wrong{
-    background: #e00
 }
