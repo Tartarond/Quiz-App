@@ -4,28 +4,64 @@
 }
 
 body{
-    background: #fff
+    background: #A4C3B2
 }
 
-.app{
-    background: #fff;
-    color: #000
+#app{
+    background: #F3E8EE;
+    color: #000;
+    display: inline-flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 20px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    border-radius: 5px;
+    font-family: Candara
 }
 
-.button{
+#current_question{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 5px;
+}
+
+#answers{
+    display: flex;
+    flex-direction: column;
+}
+
+button{
+    flex: 1;
     color: #000;
     background: #fff;
-    border: none
+    border: none;
+    padding: 10px;
+    margin: 10px
+}
+
+button:hover{
+    background: #CCE3DE
+}
+
+button:disabled{
+    background-color: #cccccc;
+    color: #555555;
 }
 
 .selected{
-    background:#ddd
+    background:#6B9080;
+}
+.selected:hover{
+    background:#6B9080;
 }
 
 .correct{
-    background: #0f0
+    background: #0e0
 }
 
 .wrong{
-    background: #f00
+    background: #e00
 }

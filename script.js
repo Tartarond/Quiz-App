@@ -75,7 +75,7 @@ function showQuestion() {
         answerButtons.removeChild(answerButtons.firstChild)
     }
     let currentQuestion = questions[questionCounter]
-    questionTitle.innerHTML = "Frage Nr. " + (questionCounter+1) + ": " + currentQuestion.question
+    questionTitle.innerHTML = (questionCounter+1) + ". " + currentQuestion.question
 
     currentQuestion.answers.forEach(answer => {
         const button = document.createElement("button")
