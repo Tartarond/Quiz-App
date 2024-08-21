@@ -1,52 +1,4 @@
 const questions = []
-// [
-//     {
-//         question: "Test Question 1",
-//         answers: [
-//             {
-//                 answer: "Test Answer 1.1",
-//                 correct: true
-//             }, 
-//             {
-//                 answer: "Test Answer 1.2",
-//                 correct: false
-//             },
-//             {
-//                 answer: "Test Answer 1.3",
-//                 correct: false
-//             },
-//             {
-//                 answer: "Test Answer 1.4",
-//                 correct: false
-//             }
-//         ],
-//         confirmed: false,
-//         correctAnswer: false
-//     },
-//     {
-//         question: "Test Question 2",
-//         answers: [
-//             {
-//                 answer: "Test Answer 2.1",
-//                 correct: true
-//             }, 
-//             {
-//                 answer: "Test Answer 2.2",
-//                 correct: false
-//             },
-//             {
-//                 answer: "Test Answer 2.3",
-//                 correct: false
-//             },
-//             {
-//                 answer: "Test Answer 2.4",
-//                 correct: false
-//             }
-//         ],
-//         confirmed: false,
-//         correctAnswer: false
-//     }
-// ]
 
 const questionTitle = document.getElementById("question_title")
 const answerButtons = document.getElementById("answers")
@@ -55,6 +7,8 @@ const nextButton = document.getElementById("next")
 const previousButton = document.getElementById("previous")
 const score = document.getElementById("score")
 const questionResult = document.getElementById("question_result")
+const finishButton = document.getElementById("finish")
+const questionElement = document.getElementById("current_question")
 
 const source = "data.json"
 
@@ -68,6 +22,7 @@ function startQuiz() {
     nextButton.addEventListener("click", nextButtonClicked)
     previousButton.addEventListener("click", previousButtonClicked)
     confirmButton.addEventListener("click", confirmButtonClicked)
+    finishButton.addEventListener("click", finishButtonClicked)
 
     loadData().then(() => {
         showQuestion();
@@ -184,6 +139,15 @@ function unselectAnswer(e) {
     selectedButton.dataset.selected = false
     selectedButton.addEventListener("click", selectAnswer)
     selectedButton.removeEventListener("click", unselectAnswer)
+}
+
+function finishButtonClicked() {
+    while(questionElement.firstChild) {
+        questionElement.removeChild(questionElement.firstChild)
+    }
+    const endingText = document.createElement("div")
+    endingText.innerHTML = "Herzlichen Glückwunsch, Sie haben das Quiz abgeschlossen und dabei " + correctAnswers + " von " + questions.length + " möglichen Punkten erreicht."
+    questionElement.appendChild(endingText)
 }
 
 startQuiz();
