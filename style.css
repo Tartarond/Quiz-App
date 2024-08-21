@@ -14,6 +14,11 @@ body{
 
 .button{
     color: #000;
-    background: #888;
+    background: #fff;
     border: none
+}
+
+.selected{
+    border:#f00;
+    background:#ddd
 }
