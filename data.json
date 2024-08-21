@@ -1,43 +1,123 @@
 [
     {
-        "question": "Test Question 1",
+        "question": "Welcher ist der größte Kontinent der Erde?",
         "answers": [
             {
-                "answer": "Test Answer 1.1",
-                "correct": true
+                "answer": "Afrika",
+                "correct": false
             }, 
             {
-                "answer": "Test Answer 1.2",
+                "answer": "Europa",
                 "correct": false
             },
             {
-                "answer": "Test Answer 1.3",
-                "correct": false
+                "answer": "Asien",
+                "correct": true
             },
             {
-                "answer": "Test Answer 1.4",
+                "answer": "Südamerika",
                 "correct": false
             }
         ]
     },
     {
-        "question": "Test Question 2",
+        "question": "Welche der folgenden Länder liegen sowohl in Europa als auch in Asien?",
         "answers": [
             {
-                "answer": "Test Answer 2.1",
+                "answer": "Türkei",
+                "correct": true
+            }, 
+            {
+                "answer": "Russland",
+                "correct": true
+            },
+            {
+                "answer": "Griechenland",
+                "correct": false
+            },
+            {
+                "answer": "Kasachstan",
+                "correct": true
+            }
+        ]
+    },
+    {
+        "question": "Welche Städte sind Hauptstädte von Ländern in Nordamerika?",
+        "answers": [
+            {
+                "answer": "Mexico-Stadt",
+                "correct": true
+            }, 
+            {
+                "answer": "Toronto",
+                "correct": false
+            },
+            {
+                "answer": "Washington, D.C.",
+                "correct": true
+            },
+            {
+                "answer": "Ottawa",
+                "correct": true
+            }
+        ]
+    },
+    {
+        "question": "Welcher Fluss ist der längste der Welt?",
+        "answers": [
+            {
+                "answer": "Amazonas",
                 "correct": false
             }, 
             {
-                "answer": "Test Answer 2.2",
+                "answer": "Nil",
                 "correct": true
             },
             {
-                "answer": "Test Answer 2.3",
+                "answer": "Mississippi",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "Welche Stadt ist die Hauptstadt von Australien?",
+        "answers": [
+            {
+                "answer": "Sydney",
+                "correct": false
+            }, 
+            {
+                "answer": "Melbourne",
                 "correct": false
             },
             {
-                "answer": "Test Answer 2.4",
+                "answer": "Brisbane",
+                "correct": false
+            },
+            {
+                "answer": "Canberra",
                 "correct": true
+            }
+        ]
+    },
+    {
+        "question": "Welche der folgenden Länder haben Küstenlinien am Mittelmeer?",
+        "answers": [
+            {
+                "answer": "Italien",
+                "correct": true
+            }, 
+            {
+                "answer": "Spanien",
+                "correct": true
+            },
+            {
+                "answer": "Griechenland",
+                "correct": true
+            },
+            {
+                "answer": "Irland",
+                "correct": false
             }
         ]
     }

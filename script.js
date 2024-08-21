@@ -75,7 +75,10 @@ function showQuestion() {
         answerButtons.removeChild(answerButtons.firstChild)
     }
     let currentQuestion = questions[questionCounter]
-    questionTitle.innerHTML = (questionCounter+1) + ". " + currentQuestion.question
+    questionTitle.innerHTML = "Frage " + (questionCounter+1) + " von " + questions.length + ": " + currentQuestion.question
+
+    previousButton.disabled = questionCounter === 0
+    nextButton.disabled = questionCounter === questions.length-1
 
     currentQuestion.answers.forEach(answer => {
         const button = document.createElement("button")
