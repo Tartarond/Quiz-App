@@ -1,51 +1,52 @@
-const questions = [
-    {
-        question: "Test Question 1",
-        answers: [
-            {
-                answer: "Test Answer 1.1",
-                correct: true
-            }, 
-            {
-                answer: "Test Answer 1.2",
-                correct: false
-            },
-            {
-                answer: "Test Answer 1.3",
-                correct: false
-            },
-            {
-                answer: "Test Answer 1.4",
-                correct: false
-            }
-        ],
-        confirmed: false,
-        correctAnswer: false
-    },
-    {
-        question: "Test Question 2",
-        answers: [
-            {
-                answer: "Test Answer 2.1",
-                correct: true
-            }, 
-            {
-                answer: "Test Answer 2.2",
-                correct: false
-            },
-            {
-                answer: "Test Answer 2.3",
-                correct: false
-            },
-            {
-                answer: "Test Answer 2.4",
-                correct: false
-            }
-        ],
-        confirmed: false,
-        correctAnswer: false
-    }
-]
+const questions = []
+// [
+//     {
+//         question: "Test Question 1",
+//         answers: [
+//             {
+//                 answer: "Test Answer 1.1",
+//                 correct: true
+//             }, 
+//             {
+//                 answer: "Test Answer 1.2",
+//                 correct: false
+//             },
+//             {
+//                 answer: "Test Answer 1.3",
+//                 correct: false
+//             },
+//             {
+//                 answer: "Test Answer 1.4",
+//                 correct: false
+//             }
+//         ],
+//         confirmed: false,
+//         correctAnswer: false
+//     },
+//     {
+//         question: "Test Question 2",
+//         answers: [
+//             {
+//                 answer: "Test Answer 2.1",
+//                 correct: true
+//             }, 
+//             {
+//                 answer: "Test Answer 2.2",
+//                 correct: false
+//             },
+//             {
+//                 answer: "Test Answer 2.3",
+//                 correct: false
+//             },
+//             {
+//                 answer: "Test Answer 2.4",
+//                 correct: false
+//             }
+//         ],
+//         confirmed: false,
+//         correctAnswer: false
+//     }
+// ]
 
 const questionTitle = document.getElementById("question_title")
 const answerButtons = document.getElementById("answers")
@@ -54,6 +55,8 @@ const nextButton = document.getElementById("next")
 const previousButton = document.getElementById("previous")
 const score = document.getElementById("score")
 const questionResult = document.getElementById("question_result")
+
+const source = "data.json"
 
 let questionCounter = 0;
 let correctAnswers = 0;
@@ -65,7 +68,37 @@ function startQuiz() {
     nextButton.addEventListener("click", nextButtonClicked)
     previousButton.addEventListener("click", previousButtonClicked)
     confirmButton.addEventListener("click", confirmButtonClicked)
-    showQuestion()
+
+    loadData().then(() => {
+        showQuestion();
+    }).catch(error => {
+        console.error('Fehler beim Laden der Daten:', error);
+    });
+}
+
+async function loadData() {
+    try {
+        const response = await fetch(source);
+
+        if (!response.ok) {
+            throw new Error('Netzwerkantwort war Fehlerhaft');
+        }
+
+        const data = await response.json();
+        data.forEach( question => {
+            questions.push(
+                {
+                    question: question.question,
+                    answers: question.answers,
+                    confirmed: false,
+                    correctAnswer: false
+                }
+            )
+        })
+        console.log(questions)
+    } catch (error) {
+        console.error('Fehler beim Laden der JSON-Datei:', error);
+    }
 }
 
 function nextButtonClicked() {
